@@ -35,15 +35,15 @@ export class APIController {
     .build()
   @Get('/get')
   async get(@Query() id: number): Promise<IGetTodoItemResponse> {
-    if (id == null || typeof id !== "number") {
-      this.logger.warn('Id is null')
-      return {success: false, message: 'Id is null', data: null};
-    }
+    // if (!id || typeof id !== 'number') {
+    //   this.logger.warn('Id is null')
+    //   return {success: false, message: 'Id is null', data: null};
+    // }
     try {
       const todoItems = await this.todoItemService.get(id);
       return {success: true, message: 'OK', data: todoItems};
     } catch (e) {
-      return {success: false, message: 'ERROR', data: e};
+      return {success: false, message: 'ERROR', data: e.message};
     }
   }
 
@@ -69,7 +69,7 @@ export class APIController {
       const result = await this.todoItemService.save(todoItem);
       return {success: true, message: 'OK', data: result};
     } catch (e) {
-      return {success: false, message: 'ERROR', data: e};
+      return {success: false, message: 'ERROR', data: e.message};
     }
   }
 
@@ -81,7 +81,18 @@ export class APIController {
       const result = await this.todoItemService.put(todoItem);
       return {success: true, message: 'OK', data: result};
     } catch (e) {
-      return {success: false, message: 'ERROR', data: e};
+      return {success: false, message: 'ERROR', data: e.message};
+    }
+  }
+
+  @Put('/update')
+  @Validate()
+  async update(@Body(ALL) todoItem: TNgaTodoItem): Promise<IGetTodoItemResponse> {
+    try {
+      const result = await this.todoItemService.put(todoItem);
+      return {success: true, message: 'OK', data: result};
+    } catch (e) {
+      return {success: false, message: 'ERROR', data: e.message};
     }
   }
 
@@ -91,7 +102,7 @@ export class APIController {
       const todoItems = await this.todoItemService.list();
       return {success: true, message: 'OK', data: todoItems};
     } catch (e) {
-      return {success: false, message: 'ERROR', data: e};
+      return {success: false, message: 'ERROR', data: e.message};
     }
   }
 
@@ -119,7 +130,7 @@ export class APIController {
       const todoItems = await this.todoItemService.pager(num, size, name);
       return {success: true, message: 'OK', data: todoItems};
     } catch (e) {
-      return {success: false, message: 'ERROR', data: e};
+      return {success: false, message: 'ERROR', data: e.message};
     }
   }
 
@@ -133,7 +144,7 @@ export class APIController {
       const todoItems = await this.todoItemService.delete(id);
       return {success: true, message: 'OK', data: todoItems};
     } catch (e) {
-      return {success: false, message: 'ERROR', data: e};
+      return {success: false, message: 'ERROR', data: e.message};
     }
   }
 

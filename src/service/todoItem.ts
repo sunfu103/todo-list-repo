@@ -23,6 +23,13 @@ export class TodoItemService {
     return this.todoItemModel.save(todoItem);
   }
 
+  async update(todoItem: TNgaTodoItem) {
+    let tmp = await this.todoItemModel.findOne(1);
+    tmp[0].status = todoItem.status
+    tmp[0].name = todoItem.name
+    return this.todoItemModel.save(tmp[0]);
+  }
+
   async delete(id: number) {
     return await this.todoItemModel.delete(id);
   }
