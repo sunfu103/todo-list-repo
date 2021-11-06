@@ -54,6 +54,12 @@ export class APIController {
     return { success: true, message: 'OK', data: todoItems };
   }
 
+  @Get('/pager')
+  async pager(@Query() num: number, @Query() size: number, @Query() name: string): Promise<IGetTodoItemResponse> {
+    const todoItems = await this.todoItemService.pager(num, size, name);
+    return { success: true, message: 'OK', data: todoItems };
+  }
+
   @Del('/delete')
   async delete(@Query() id: number): Promise<IGetTodoItemResponse> {
     if (id == null )
