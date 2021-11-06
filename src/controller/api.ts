@@ -35,6 +35,7 @@ export class APIController {
   @Post('user/get_user')
   async getUser(@Query() uid: string): Promise<IGetUserResponse> {
     const user = await this.userService.getUser({ uid });
+    console.log("------getUser------");
     return { success: true, message: 'OK', data: user };
   }
 
