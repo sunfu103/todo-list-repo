@@ -1,6 +1,6 @@
-import { createApp, close, createHttpRequest } from "@midwayjs/mock";
-import { Framework } from "@midwayjs/web";
-import { Application } from "egg";
+import {createApp, close, createHttpRequest} from "@midwayjs/mock";
+import {Framework} from "@midwayjs/web";
+import {Application} from "egg";
 
 describe("test/controller/api.test.ts", () => {
   let app: Application;
@@ -14,14 +14,26 @@ describe("test/controller/api.test.ts", () => {
     await close(app);
   });
 
-  it("should POST /api/get_user", async () => {
+  it("should POST /api/todo/get", async () => {
     // make request
     const result = await createHttpRequest(app)
-      .post("/api/get_user")
-      .query({ uid: 123 });
+        .get("/api/todo/get")
+        .query({ id: 1 });
 
-    // use expect by jest
+    expect(result.status).toBe(200);
+    expect(result.body.message).toBe("OK");
+
+  });
+
+
+  it("should POST /api/todo/save", async () => {
+    // make request
+    const result = await createHttpRequest(app)
+      .post("/api/todo/save")
+      .send({ name: 'name12', owner: 12, status: 1});
+
     expect(result.status).toBe(200);
     expect(result.body.message).toBe("OK");
   });
+
 });
