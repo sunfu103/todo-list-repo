@@ -21,7 +21,7 @@ import { UserService } from '../service/user';
 
 
 @Provide()
-@Controller('/api')
+@Controller('/api', { middleware: [ 'reportMiddleware' ] })
 export class APIController {
   @Inject()
   ctx: Context;
@@ -32,7 +32,7 @@ export class APIController {
   @Inject()
   todoItemService: TodoItemService;
 
-  @Post('/user/get_user')
+  @Post('/user/get_user', { middleware: [ 'reportMiddleware' ] })
   async getUser(@Query() uid: string): Promise<IGetUserResponse> {
     const user = await this.userService.getUser({ uid });
     console.log("------getUser------");
