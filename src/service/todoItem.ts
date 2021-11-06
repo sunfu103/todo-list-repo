@@ -30,4 +30,17 @@ export class TodoItemService {
   async list() {
     return await this.todoItemModel.find();
   }
+
+  async pager(num: number, size: number, name: string) {
+    let result = await this.todoItemModel
+      .createQueryBuilder("todo")
+      .where("todo.name like :name", { name:`%${name}%` })
+      .andWhere("todo.id > 5")
+      .orderBy("todo.id", "DESC")
+      .skip(num * size)
+      .take(size)
+      .getMany();
+    return result;
+  }
+
 }
