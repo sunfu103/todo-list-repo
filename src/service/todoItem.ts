@@ -1,8 +1,6 @@
 import { Provide } from '@midwayjs/decorator';
-import { IUserOptions } from '../interface';
 import { Repository } from 'typeorm';
 import { InjectEntityModel } from '@midwayjs/orm';
-import { TNgaTodoUser } from '../entity/TNgaTodoUser';
 import { TNgaTodoItem } from '../entity/TNgaTodoItem';
 
 @Provide()
