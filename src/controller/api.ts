@@ -17,11 +17,7 @@ export class APIController {
   @Inject()
   todoItemService: TodoItemService;
 
-  /**
-   * 
-   * @param id todo list 的 id
-   * @returns todo list 单个项目
-   */
+
    @CreateApiDoc()
    .summary('查询单个todo')
    .description('根据id查询todo具体信息')
@@ -30,16 +26,6 @@ export class APIController {
     example: '1'
    })
   .respond(200)
-  .respond(302, 'redirect to another URL')
-  .respond(201, 'response a text data', 'text', {
-    headers: {
-      'x-schema': {
-        description: 'set a schema header',
-        type: 'string'
-      }
-    },
-    example: 'this is a reponse data'
-  })
   .respond(500, 'error in response', 'json', {
     example: {
       a: 1
@@ -63,16 +49,6 @@ export class APIController {
     example: 'xxxxx'
    })
   .respond(200)
-  .respond(302, 'redirect to another URL')
-  .respond(201, 'response a text data', 'text', {
-    headers: {
-      'x-schema': {
-        description: 'set a schema header',
-        type: 'string'
-      }
-    },
-    example: 'this is a reponse data'
-  })
   .respond(500, 'error in response', 'json', {
     example: {
       a: 1
@@ -110,16 +86,6 @@ export class APIController {
     example: '10'
    })
   .respond(200)
-  .respond(302, 'redirect to another URL')
-  .respond(201, 'response a text data', 'text', {
-    headers: {
-      'x-schema': {
-        description: 'set a schema header',
-        type: 'string'
-      }
-    },
-    example: 'this is a reponse data'
-  })
   .respond(500, 'error in response', 'json', {
     example: {
       a: 1
