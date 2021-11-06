@@ -11,6 +11,7 @@ import {
   Body,
   Put,
   Del,
+  Validate,
  } from '@midwayjs/decorator';
 import { Context } from 'egg';
 import { IGetUserResponse } from '../interface';
@@ -46,6 +47,7 @@ export class APIController {
   }
 
   @Post('/todo/save')
+  @Validate()
   async save(@Body(ALL) todoItem: TNgaTodoItem): Promise<IGetTodoItemResponse> {
     const result = await this.todoItemService.save(todoItem);
     return { success: true, message: 'OK', data: result };

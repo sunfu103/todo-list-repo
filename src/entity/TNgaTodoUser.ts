@@ -1,5 +1,7 @@
 import { Column } from "typeorm";
 import { EntityModel } from "@midwayjs/orm";
+import {Rule} from "@midwayjs/decorator";
+import {RuleType} from "@midwayjs/decorator/dist/annotation/rule";
 
 @EntityModel("t_nga_todo_user", { schema: "test" })
 export class TNgaTodoUser {
@@ -12,6 +14,7 @@ export class TNgaTodoUser {
     comment: "用户名",
     length: 20,
   })
+  @Rule(RuleType.string().required().max(50))
   username: string | null;
 
   @Column("varchar", {
@@ -20,6 +23,7 @@ export class TNgaTodoUser {
     comment: "密码",
     length: 20,
   })
+  @Rule(RuleType.string().required().max(50))
   password: string | null;
 
   @Column("datetime", {

@@ -1,9 +1,12 @@
-import { Column } from "typeorm";
+import {Column, PrimaryGeneratedColumn} from "typeorm";
 import { EntityModel } from "@midwayjs/orm";
+import {Rule} from "@midwayjs/decorator";
+import {RuleType} from "@midwayjs/decorator/dist/annotation/rule";
 
 @EntityModel("t_nga_todo_item", { schema: "test" })
 export class TNgaTodoItem {
-  @Column("int", { primary: true, name: "id", comment: "主键" })
+  //@Column("int", { primary: true, name: "id", comment: "主键" })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column("varchar", {
@@ -12,6 +15,7 @@ export class TNgaTodoItem {
     comment: "todo项目",
     length: 20,
   })
+  @Rule(RuleType.string().required().max(255))
   name: string | null;
 
   @Column("int", {
@@ -19,6 +23,7 @@ export class TNgaTodoItem {
     comment: "负责人，关联user表的id",
     default: () => "'0'",
   })
+  @Rule(RuleType.number().required())
   owner: number;
 
   @Column("int", {
