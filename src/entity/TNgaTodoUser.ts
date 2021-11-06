@@ -1,11 +1,11 @@
-import { Column } from "typeorm";
+import { Column, PrimaryGeneratedColumn } from "typeorm";
 import { EntityModel } from "@midwayjs/orm";
 import {Rule} from "@midwayjs/decorator";
 import {RuleType} from "@midwayjs/decorator/dist/annotation/rule";
 
 @EntityModel("t_nga_todo_user", { schema: "test" })
 export class TNgaTodoUser {
-  @Column("int", { primary: true, name: "id", comment: "主键" })
+  @PrimaryGeneratedColumn({ type: "int", name: "id", comment: "主键" })
   id: number;
 
   @Column("varchar", {
