@@ -1,9 +1,9 @@
-import { Column } from "typeorm";
+import { Column, PrimaryGeneratedColumn } from "typeorm";
 import { EntityModel } from "@midwayjs/orm";
 
 @EntityModel("t_nga_todo_item", { schema: "test" })
 export class TNgaTodoItem {
-  @Column("int", { primary: true, name: "id", comment: "主键" })
+  @PrimaryGeneratedColumn({ type: "int", name: "id", comment: "主键" })
   id: number;
 
   @Column("varchar", {
