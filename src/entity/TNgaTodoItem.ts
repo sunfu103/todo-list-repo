@@ -6,6 +6,7 @@ import {RuleType} from "@midwayjs/decorator/dist/annotation/rule";
 @EntityModel("t_nga_todo_item", { schema: "test" })
 export class TNgaTodoItem {
 
+  @Rule(RuleType.number())
   @PrimaryGeneratedColumn({ type: "int", name: "id", comment: "主键" })
   id: number;
 

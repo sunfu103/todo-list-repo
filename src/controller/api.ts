@@ -35,10 +35,10 @@ export class APIController {
     .build()
   @Get('/get')
   async get(@Query() id: number): Promise<IGetTodoItemResponse> {
-    // if (!id || typeof id !== 'number') {
-    //   this.logger.warn('Id is null')
-    //   return {success: false, message: 'Id is null', data: null};
-    // }
+    if (!id || isNaN(id)) {
+      this.logger.warn('Id is null')
+      return {success: false, message: 'Id is null', data: null};
+    }
     try {
       const todoItems = await this.todoItemService.get(id);
       return {success: true, message: 'OK', data: todoItems};
@@ -136,7 +136,7 @@ export class APIController {
 
   @Del('/delete')
   async delete(@Query() id: number): Promise<IGetTodoItemResponse> {
-    if (id == null || typeof id !== "number") {
+    if (id == null || isNaN(id)) {
       this.logger.warn('Id is null')
       return {success: false, message: 'Id is null', data: null};
     }
