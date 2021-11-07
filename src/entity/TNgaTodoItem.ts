@@ -32,7 +32,7 @@ export class TNgaTodoItem {
     comment: "状态，0：未开始，1：进行中，2：已完成",
     default: () => "'0'",
   })
-  @Rule(RuleType.number())
+  @Rule(RuleType.number().required())
   status: number;
 
   @Column("datetime", {

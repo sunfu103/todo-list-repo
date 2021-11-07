@@ -23,11 +23,16 @@ export class TodoItemService {
     return this.todoItemModel.save(todoItem);
   }
 
-  async update(todoItem: TNgaTodoItem) {
-    let tmp = await this.todoItemModel.findOne(1);
-    tmp[0].status = todoItem.status
-    tmp[0].name = todoItem.name
-    return this.todoItemModel.save(tmp[0]);
+  async update_status(id: number, status: number) {
+    const todoItem = new TNgaTodoItem();
+    todoItem.id = id;
+    let tmp = await this.todoItemModel.find(todoItem);
+    if (tmp != null && tmp.length > 0) {
+      tmp[0].status = status
+      return this.todoItemModel.save(tmp[0]);
+    } else {
+      return null;
+    }
   }
 
   async delete(id: number) {
