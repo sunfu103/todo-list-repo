@@ -36,4 +36,35 @@ describe("test/controller/api.test.ts", () => {
     expect(result.body.message).toBe("OK");
   });
 
+
+  it("should PUT /api/todo/update", async () => {
+    // make request
+    const result = await createHttpRequest(app)
+      .put("/api/todo/update")
+      .send({ id:1,name: 'name12', owner: 12, status: 1});
+
+    expect(result.status).toBe(200);
+    expect(result.body.message).toBe("OK");
+  });
+
+  it("should DEL /api/todo/del", async () => {
+    // make request
+    const result = await createHttpRequest(app)
+      .del("/api/todo/delete")
+      .query({ id:1});
+    expect(result.status).toBe(200);
+    expect(result.body.message).toBe("OK");
+  });
+
+  it("should GET /api/todo/pager", async () => {
+    // make request
+    const result = await createHttpRequest(app)
+      .get("/api/todo/pager")
+      .query({ num:1,size: 10});
+    expect(result.status).toBe(200);
+    expect(result.body.message).toBe("OK");
+  });
+
+
+
 });
