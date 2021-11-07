@@ -14,10 +14,10 @@ describe("test/controller/api.test.ts", () => {
     await close(app);
   });
 
-  it("should POST /api/todo/get", async () => {
+  it("should POST /api/todo/get-todo", async () => {
     // make request
     const result = await createHttpRequest(app)
-        .get("/api/todo/get")
+        .get("/api/todo/get-todo")
         .query({ id: 1 });
 
     expect(result.status).toBe(200);
@@ -26,10 +26,10 @@ describe("test/controller/api.test.ts", () => {
   });
 
 
-  it("should POST /api/todo/save", async () => {
+  it("should POST /api/todo/save-todo", async () => {
     // make request
     const result = await createHttpRequest(app)
-      .post("/api/todo/save")
+      .post("/api/todo/save-todo")
       .send({ name: 'name12', owner: 12, status: 1});
 
     expect(result.status).toBe(200);
@@ -37,29 +37,19 @@ describe("test/controller/api.test.ts", () => {
   });
 
 
-  it("should PUT /api/todo/update", async () => {
+  it("should DEL /api/todo/delete-todo", async () => {
     // make request
     const result = await createHttpRequest(app)
-      .put("/api/todo/update")
-      .send({ id:1,name: 'name12', owner: 12, status: 1});
-
-    expect(result.status).toBe(200);
-    expect(result.body.message).toBe("OK");
-  });
-
-  it("should DEL /api/todo/del", async () => {
-    // make request
-    const result = await createHttpRequest(app)
-      .del("/api/todo/delete")
+      .del("/api/todo/delete-todo")
       .query({ id:1});
     expect(result.status).toBe(200);
     expect(result.body.message).toBe("OK");
   });
 
-  it("should GET /api/todo/pager", async () => {
+  it("should GET /api/todo/query-todos", async () => {
     // make request
     const result = await createHttpRequest(app)
-      .get("/api/todo/pager")
+      .get("/api/todo/query-todos")
       .query({ num:1,size: 10});
     expect(result.status).toBe(200);
     expect(result.body.message).toBe("OK");

@@ -57,7 +57,7 @@ npm install mysql --save
 
 > 4、启动本地项目
 ```
-(base) localhost:todo-list-repo shuidi$ npm run dev
+$ npm run dev
 
 > my-midway-project@1.0.0 dev
 > cross-env ets && cross-env NODE_ENV=local midway-bin dev --ts
@@ -76,4 +76,9 @@ http://127.0.0.1:7001/swagger-ui/index.html
 
 ```
 
+```
+
+> 7、执行单元测试
+```
+$ npm run test
 ```

@@ -81,7 +81,7 @@ export class APIController {
   @Validate()
   async update(@Query() id: number, @Query() status: number): Promise<IGetTodoItemResponse> {
     if (!id || !status || isNaN(id) || isNaN(status)) {
-      this.logger.warn(this.ctx.path, 'id or status invalid')
+      this.logger.warn('id or status invalid')
       return {success: false, message: 'id or status invalid', data: null};
     }
     try {
